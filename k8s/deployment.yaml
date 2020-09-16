@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: cloud-builder
+  name: cloud-builder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-builder
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cloud-builder
+    spec:
+      containers:
+      - image: gcr.io/gcp-pso-bfg-playground/github.com/joeyslalom/cloud-builder:51bf5a4fdf6be02682628653674dfff3e9658d09
+        name: cloud-builder
+        resources: {}
+status: {}

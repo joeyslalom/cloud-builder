@@ -28,7 +28,7 @@ FROM google/cloud-sdk:310.0.0
 # need to remove docker in google/cloud-sdk
 RUN rm /usr/local/bin/docker && \
     apt-get -y update && \
-    apt-get -y install \
+    apt-get -y install --no-install-recommends \
         apt-transport-https \
         ca-certificates \
         curl \
@@ -41,7 +41,8 @@ RUN rm /usr/local/bin/docker && \
        $(lsb_release -cs) \
        stable" && \
     apt-get -y update && \
-    apt-get -y install docker-ce docker-ce-cli containerd.io
+    apt-get -y install --no-install-recommends docker-ce docker-ce-cli containerd.io && \
+    rm -rf /var/lib/apt/lists/* /var/tmp/*
 
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /app/server /app/server
