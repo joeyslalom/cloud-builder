@@ -17,8 +17,16 @@ spec:
       labels:
         app: cloud-builder
     spec:
+      volumes:
+        - name: docker-socket-volume
+          hostPath:
+            path: /var/run/docker.sock
+            type: File
       containers:
-      - image: gcr.io/gcp-pso-bfg-playground/github.com/joeyslalom/cloud-builder:51bf5a4fdf6be02682628653674dfff3e9658d09
+      - image: gcr.io/gcp-pso-bfg-playground/github.com/joeyslalom/cloud-builder:940e9e23c7462e84f08515007fb4515c1b588080
         name: cloud-builder
         resources: {}
+        volumeMounts:
+          - mountPath: /var/run/docker.sock
+            name: docker-socket-volume
 status: {}
