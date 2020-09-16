@@ -17,6 +17,7 @@ spec:
       labels:
         app: cloud-builder
     spec:
+      # docker-socket-volume bind mount required to build docker images
       volumes:
         - name: docker-socket-volume
           hostPath:
