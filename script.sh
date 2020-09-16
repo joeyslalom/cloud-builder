@@ -3,7 +3,7 @@
 cd dest
 
 echo "gcloud auth"
-#gcloud auth configure-docker gcr.io
+gcloud auth configure-docker gcr.io
 
 echo "docker build"
 docker build -q -t gcr.io/gcp-pso-bfg-playground/target .
