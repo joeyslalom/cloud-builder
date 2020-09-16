@@ -30,4 +30,4 @@ COPY script.sh ./
 
 COPY dest/ ./dest
 
-CMD ["sh"]
+ENTRYPOINT ["./script.sh"]
