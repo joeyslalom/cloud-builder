@@ -32,6 +32,7 @@ RUN rm /usr/local/bin/docker && \
         apt-transport-https \
         ca-certificates \
         curl \
+        git \
         gnupg-agent \
         software-properties-common && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
