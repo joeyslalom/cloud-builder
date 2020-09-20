@@ -21,29 +21,7 @@ RUN go build -mod=readonly -v -o server
 
 # Add docker to google/cloud-sdk
 # https://hub.docker.com/r/google/cloud-sdk
-# https://docs.docker.com/engine/install/debian/
-# https://github.com/GoogleCloudPlatform/cloud-builders/blob/master/docker/Dockerfile-19.03.8
 FROM google/cloud-sdk:310.0.0
-
-# need to remove docker in google/cloud-sdk
-RUN rm /usr/local/bin/docker && \
-    apt-get -y update && \
-    apt-get -y install --no-install-recommends \
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        git \
-        gnupg-agent \
-        software-properties-common && \
-    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
-    apt-key fingerprint 0EBFCD88 && \
-    add-apt-repository \
-       "deb [arch=amd64] https://download.docker.com/linux/debian \
-       $(lsb_release -cs) \
-       stable" && \
-    apt-get -y update && \
-    apt-get -y install --no-install-recommends docker-ce docker-ce-cli containerd.io && \
-    rm -rf /var/lib/apt/lists/* /var/tmp/*
 
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /app/server /app/server
