@@ -19,7 +19,6 @@ COPY invoke.go ./
 # Build the binary.
 RUN go build -mod=readonly -v -o server
 
-# Add docker to google/cloud-sdk
 # https://hub.docker.com/r/google/cloud-sdk
 FROM google/cloud-sdk:310.0.0
 
