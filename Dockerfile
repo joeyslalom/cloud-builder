@@ -22,6 +22,12 @@ RUN go build -mod=readonly -v -o server
 # https://hub.docker.com/r/google/cloud-sdk
 FROM google/cloud-sdk:310.0.0
 
+RUN apt-get -y update && \
+    apt-get -y install --no-install-recommends \
+        mercurial \
+        && \
+    rm -rf /var/lib/apt/lists/* /var/tmp/*
+
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /app/server /app/server
 COPY script.sh ./

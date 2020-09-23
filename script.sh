@@ -1,13 +1,16 @@
 #!/bin/bash
 set -e
 
+echo "hg clone"
+hg clone http://mock-hg-mirror/ phpmyadmin
+cd phpmyadmin
+
 echo "gcloud auth"
 gcloud auth configure-docker gcr.io --quiet
 
-cd dest
 echo "docker build"
-docker build -q -t gcr.io/gcp-pso-bfg-playground/target .
+docker build -q -t gcr.io/gcp-pso-bfg-playground/phpmyadmin .
 
 # access scope for Storage must be Read Write in order to push to GCR
 echo "docker push"
-docker push gcr.io/gcp-pso-bfg-playground/target
+docker push gcr.io/gcp-pso-bfg-playground/phpmyadmin

@@ -31,6 +31,7 @@ func main() {
 func scriptHandler(w http.ResponseWriter, r *http.Request) {
 	cmd := exec.CommandContext(r.Context(), "/bin/sh", "script.sh")
 
+	// https://blog.kowalczyk.info/article/wOYk/advanced-command-execution-in-go-with-osexec.html
 	var stdoutBuf, stderrBuf bytes.Buffer
 	cmd.Stdout = io.MultiWriter(os.Stdout, &stdoutBuf)
 	cmd.Stderr = io.MultiWriter(os.Stderr, &stderrBuf)

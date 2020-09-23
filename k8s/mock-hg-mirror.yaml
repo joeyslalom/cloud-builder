@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mock-hg-mirror
+  name: mock-hg-mirror
+spec:
+  ports:
+    - name: 80-8000
+      port: 80
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: mock-hg-mirror
+  type: NodePort
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mock-hg-mirror
+  name: mock-hg-mirror
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mock-hg-mirror
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mock-hg-mirror
+    spec:
+      containers:
+      - image: gcr.io/gcp-pso-bfg-playground/github.com/joeyslalom/mock-mercurial-mirror:ee4c7563e1597fde9457f080816b7c745ea317bb
+        name: mock-mercurial-mirror
+        resources: {}
+status: {}
