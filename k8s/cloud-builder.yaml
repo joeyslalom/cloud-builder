@@ -42,7 +42,7 @@ spec:
             path: /var/run/docker.sock
             type: File
       containers:
-      - image: gcr.io/gcp-pso-bfg-playground/github.com/joeyslalom/cloud-builder:ab20e2e3815fd8d5e558fd168766004d8b820380
+      - image: gcr.io/gcp-pso-bfg-playground/github.com/joeyslalom/cloud-builder:df6c513eaf9aff62e74762cc13ab241efff7022f
         name: cloud-builder
         resources: {}
         volumeMounts:

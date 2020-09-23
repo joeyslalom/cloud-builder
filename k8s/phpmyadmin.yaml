@@ -36,7 +36,7 @@ spec:
         app: phpmyadmin
     spec:
       containers:
-        - image: gcr.io/gcp-pso-bfg-playground/phpmyadmin
+        - image: gcr.io/gcp-pso-bfg-playground/phpmyadmin:latest
           name: phpmyadmin
           resources: {}
           env:
