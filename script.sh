@@ -3,7 +3,7 @@ set -e
 
 echo "hg clone"
 hg clone http://mock-hg-mirror/ phpmyadmin
-cd phpmyadmin
+cd phpmyadmin/apache
 
 echo "gcloud auth"
 gcloud auth configure-docker gcr.io --quiet
