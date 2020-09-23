@@ -31,7 +31,6 @@ RUN apt-get -y update && \
 # Copy the binary to the production image from the builder stage.
 COPY --from=builder /app/server /app/server
 COPY script.sh ./
-COPY dest/ ./dest/
 
 # Run the web service on container startup.
 CMD ["/app/server"]
