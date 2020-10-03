@@ -29,7 +29,14 @@ func main() {
 }
 
 func scriptHandler(w http.ResponseWriter, r *http.Request) {
-	cmd := exec.CommandContext(r.Context(), "/bin/sh", "script.sh")
+
+	// From exec.CommandContext():
+	// The provided context is used to kill the process (by calling
+	// os.Process.Kill) if the context becomes done before the command
+	// completes on its own.
+
+	// This script takes over an hour to complete and is eventually killed
+	cmd := exec.Command("/bin/bash", "script.sh")
 
 	// https://blog.kowalczyk.info/article/wOYk/advanced-command-execution-in-go-with-osexec.html
 	var stdoutBuf, stderrBuf bytes.Buffer
@@ -43,5 +50,5 @@ func scriptHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	outStr, errStr := string(stdoutBuf.Bytes()), string(stderrBuf.Bytes())
 	log.Printf("\nout:\n%s\nerr:\n%s\n", outStr, errStr)
-	_, _ = w.Write([]byte("success"))
+	_, _ = w.Write([]byte("done"))
 }
